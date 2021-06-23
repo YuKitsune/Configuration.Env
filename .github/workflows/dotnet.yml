@@ -8,6 +8,9 @@ on:
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: Configuration.Env
 
     runs-on: ubuntu-latest
 
