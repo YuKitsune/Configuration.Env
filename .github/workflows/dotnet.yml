@@ -10,7 +10,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: Configuration.Env
+        working-directory: YuKitsune.Configuration.Env
 
     runs-on: ubuntu-latest
 
