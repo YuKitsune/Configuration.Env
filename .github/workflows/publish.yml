@@ -28,5 +28,3 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish
       run: dotnet nuget push YuKitsune.Configuration.Env/bin/Release/*.nupkg --api-key ${{secrets.NUGET_API_KEY}}
-      with:
-          PROJECT_FILE_PATH: YuKitsune.Configuration.Env/YuKitsune.Configuration.Env/YuKitsune.Configuration.Env.csproj
