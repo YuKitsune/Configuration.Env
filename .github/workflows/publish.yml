@@ -28,5 +28,5 @@ jobs:
     - name: Publish
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-          PROJECT_FILE_PATH: YuKitsune.Configuration.Env/YuKitsune.Configuration.Env.csproj
+          PROJECT_FILE_PATH: YuKitsune.Configuration.Env/YuKitsune.Configuration.Env/YuKitsune.Configuration.Env.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
