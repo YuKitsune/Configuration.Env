@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
-  ENV configuration provider implementation for `Microsoft.Extensions.Configuration`.
+  ENV configuration provider implementation for Microsoft.Extensions.Configuration.
 
   [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/YuKitsune/Configuration.Env/CI)](https://github.com/yukitsune/Configuration.Env/actions?query=workflow:CI)
   [![Nuget](https://img.shields.io/nuget/v/YuKitsune.Configuration.Env)](https://www.nuget.org/packages/yukitsune.configuration.env)
@@ -18,15 +18,16 @@ dotnet add package YuKitsune.Configuration.Env
 
 ## Usage
 
-In your applications `Program.cs` file, add `ConfigureAppConfiguration()` to the host builder, then inside the 
-To start reading from `.env` files, simply call the `AddEnvFile(string path)` from the ``
+In your applications `Program.cs` file, add `ConfigureAppConfiguration()` to the host builder, then inside the configuration delegate, call the `config.AddEnvFile(string path)` method.
+
+Example:
 ```cs
 public static IHostBuilder CreateHostBuilder(string[] args)
 {
     Host.CreateDefaultBuilder(args)
-        .ConfigureAppConfiguration((ctx, cfg) =>
+        .ConfigureAppConfiguration((context, config) =>
             {
-                cfg.AddEnvFile(".env");
+                config.AddEnvFile(".env");
             })
             .ConfigureWebHostDefaults(webBuilder =>
                 {
