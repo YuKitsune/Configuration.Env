@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileProviders;
@@ -21,6 +22,9 @@ namespace YuKitsune.Configuration.Env
         /// <returns>An <see cref="EnvConfigurationProvider"/></returns>
         public override IConfigurationProvider Build(IConfigurationBuilder builder)
         {
+            // This is necessary as the default PhysicalFileProvider filters out dot-prefixed files (.env)
+            FileProvider = MakeFileProvider(AppContext.BaseDirectory);
+
             EnsureDefaults(builder);
             return new EnvConfigurationProvider(this);
         }
@@ -42,12 +46,15 @@ namespace YuKitsune.Configuration.Env
                     pathToFile = System.IO.Path.Combine(System.IO.Path.GetFileName(directory), pathToFile);
                     directory = System.IO.Path.GetDirectoryName(directory);
                 }
+
                 if (Directory.Exists(directory))
                 {
-                    FileProvider = new PhysicalFileProvider(directory, ExclusionFilters.System);
+                    FileProvider = MakeFileProvider(directory);
                     Path = pathToFile;
                 }
             }
         }
+
+        IFileProvider MakeFileProvider(string path) => new PhysicalFileProvider(path, ExclusionFilters.System);
     }
 }
