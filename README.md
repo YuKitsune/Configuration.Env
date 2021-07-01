@@ -29,11 +29,21 @@ public static IHostBuilder CreateHostBuilder(string[] args)
             {
                 config.AddEnvFile(".env");
             })
-            .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }
+```
+
+To make sure the `.env` file gets copied to the output directory, add this to your `.csproj` file:
+```xml
+<ItemGroup>
+    <None Remove=".env" />
+    <Content Include=".env">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+</ItemGroup>
 ```
 
 And that's it! Your program is now reading from `.env` files.
