@@ -18,35 +18,31 @@ dotnet add package YuKitsune.Configuration.Env
 
 ## Usage
 
-In your applications `Program.cs` file, add `ConfigureAppConfiguration()` to the host builder, then inside the configuration delegate, call the `config.AddEnvFile(string path)` method.
+### 1. Create the `.env` file
 
-Example:
+Create a `.env` file in the root of your project.
+
+Note: Any file with `.env` in the name will get copied to the output directory. 
+Example: `.env`, `dev.env`, `.env.prod`, etc.
+
+### 2. Configure the host builder
+
 ```cs
 public static IHostBuilder CreateHostBuilder(string[] args)
 {
-    Host.CreateDefaultBuilder(args)
-        .ConfigureAppConfiguration((context, config) =>
-            {
-                config.AddEnvFile(".env");
-            })
-        .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
+  Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration((context, config) =>
+      {
+        config.AddEnvFile(".env");
+      })
+    .ConfigureWebHostDefaults(webBuilder =>
+      {
+        webBuilder.UseStartup<Startup>();
+      });
 }
 ```
 
-To make sure the `.env` file gets copied to the output directory, add this to your `.csproj` file:
-```xml
-<ItemGroup>
-    <None Remove=".env" />
-    <Content Include=".env">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-</ItemGroup>
-```
-
-And that's it! Your program is now reading from `.env` files.
+That's it! Your program is now reading from `.env` files!
 
 For more information about how configuration works in .NET Core (and in ASP.NET Core specifically), please see the [official docs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-5.0).
 
@@ -75,12 +71,6 @@ For more information, please see the [official docs](https://docs.microsoft.com/
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`feature/AmazingFeature`)
-3. Commit your Changes
-4. Push to the Branch
-5. Open a Pull Request
 
 ## Credits
 
