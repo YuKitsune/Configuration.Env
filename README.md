@@ -5,7 +5,7 @@
 <h3 align="center">
   ENV configuration provider implementation for Microsoft.Extensions.Configuration.
 
-  [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/YuKitsune/Configuration.Env/CI)](https://github.com/yukitsune/Configuration.Env/actions?query=workflow:CI)
+  [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/YuKitsune/Configuration.Env/ci.yml?branch=main)](https://github.com/YuKitsune/Configuration.Env/actions/workflows/ci.yml)
   [![Nuget](https://img.shields.io/nuget/v/YuKitsune.Configuration.Env)](https://www.nuget.org/packages/yukitsune.configuration.env)
 </h3>
 
