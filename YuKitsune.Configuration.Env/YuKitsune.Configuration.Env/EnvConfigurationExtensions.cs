@@ -85,7 +85,6 @@ namespace YuKitsune.Configuration.Env
                 s.Path = path;
                 s.Optional = optional;
                 s.ReloadOnChange = reloadOnChange;
-                s.ResolveFileProvider();
             });
         }
 
