@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Xunit;
@@ -22,6 +23,17 @@ namespace YuKitsune.Configuration.Env.Tests
         {
             var envFile = ".env.test";
             File.WriteAllText(envFile,"var=val");
+
+            var config = new ConfigurationBuilder().AddEnvFile(envFile).Build();
+            Assert.Equal("val", config["var"]);
+        }
+        
+        [Fact]
+        public void CanLoadDotPrefixedFiles_FromParentDirectory()
+        {
+            var parentDirectory = new DirectoryInfo(Environment.CurrentDirectory).Parent!.FullName;
+            var envFile = Path.Join(parentDirectory, ".env");
+            File.WriteAllText(envFile, "var=val");
 
             var config = new ConfigurationBuilder().AddEnvFile(envFile).Build();
             Assert.Equal("val", config["var"]);

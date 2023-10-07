@@ -23,7 +23,7 @@ namespace YuKitsune.Configuration.Env
         public override IConfigurationProvider Build(IConfigurationBuilder builder)
         {
             // This is necessary as the default PhysicalFileProvider filters out dot-prefixed files (.env)
-            FileProvider = MakeFileProvider(AppContext.BaseDirectory);
+            FileProvider ??= MakeFileProvider(AppContext.BaseDirectory);
 
             EnsureDefaults(builder);
             return new EnvConfigurationProvider(this);
